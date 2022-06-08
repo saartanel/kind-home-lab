@@ -1,0 +1,19 @@
+---
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+name: cluster
+networking:
+  podSubnet: "10.242.0.0/16"
+  serviceSubnet: "10.93.0.0/16"
+  ipFamily: ipv4
+nodes:
+- role: control-plane
+- role: worker
+  kubeadmConfigPatches:
+  - |
+    kind: JoinConfiguration
+    nodeRegistration:
+      kubeletExtraArgs:
+        node-labels: "ingress=true"
+        register-with-taints: "ingress=true:NoSchedule"
+- role: worker
