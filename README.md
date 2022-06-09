@@ -1,4 +1,4 @@
-# vagrant-kind
+# kind-home-lab
 
 Trying to create a simple kubernetes lab environment in my PC
 
@@ -24,7 +24,7 @@ Currently using:
 ## Delete env
 - Exec "vagrant destroy --force" inside the Vagrantfile folder
 ## ToDo
-- Something is broken with the ingresses (showing 404)?
-- Want try out ArgoCD
+- kvm/qemu/something else for Linux Vagrant provisioner?
+- Want to try out ArgoCD
 ## Credit
-Used some of Martivo's architecture as an example (https://github.com/martivo/kind-lab)
+Used some of [martivo's](https://github.com/martivo) [kind-lab](https://github.com/martivo/kind-lab) as an example 

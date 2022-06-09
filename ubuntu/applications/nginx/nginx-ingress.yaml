@@ -2,17 +2,18 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: nginx-ingress
-  labels:
-    name: nginx-ingress
+  name: nginx-ing
+  annotations:
+    kubernetes.io/ingress.class: haproxy
+    ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
   - http:
       paths:
-      - pathType: Prefix
-        path: "/nginx"
+      - path: /nginx
+        pathType: Prefix
         backend:
           service:
-            name: nginx
-            port: 
+            name: nginx-svc
+            port:
               number: 80
