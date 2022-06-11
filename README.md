@@ -5,7 +5,7 @@ Trying to create a simple kubernetes lab environment in my PC
 Currently using:
 - Vagrant for vm provisioning
 - VirtualBox for vm provider (on Windows)
-- Libvirt for vm provisioner (on Linux/Ubuntu)
+- Libvirt for vm provider (on Linux/Ubuntu)
 - Docker for container runtime
 - Kind for kubernetes cluster creation
 - Metallb as a loadbalancer
