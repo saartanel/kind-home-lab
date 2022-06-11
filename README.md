@@ -4,7 +4,8 @@ Trying to create a simple kubernetes lab environment in my PC
 
 Currently using:
 - Vagrant for vm provisioning
-- VirtualBox for vm provider
+- VirtualBox for vm provider (on Windows)
+- Libvirt for vm provisioner (on Linux/Ubuntu)
 - Docker for container runtime
 - Kind for kubernetes cluster creation
 - Metallb as a loadbalancer
@@ -13,7 +14,8 @@ Currently using:
 
 ## Prerequisites
 - Have Vagrant installed (https://www.vagrantup.com/docs/installation)
-- Have VirtualBox installed (https://www.virtualbox.org)
+- For Windows have VirtualBox installed (https://www.virtualbox.org)
+- For Linux/Ubuntu have Libvirt installed (https://ostechnix.com/install-and-configure-kvm-in-ubuntu-20-04-headless-server/)
 - Mayhaps have some dhcp in your network for vm ip
 ## How to use
 - Clone the repository and cd to folder
@@ -24,7 +26,7 @@ Currently using:
 ## Delete env
 - Exec "vagrant destroy --force" inside the Vagrantfile folder
 ## ToDo
-- kvm/qemu/something else for Linux Vagrant provisioner?
+- Figure out how ingresses work (rewrites and stuff)
 - Want to try out ArgoCD
 ## Credit
 Used some of [martivo's](https://github.com/martivo) [kind-lab](https://github.com/martivo/kind-lab) as an example 

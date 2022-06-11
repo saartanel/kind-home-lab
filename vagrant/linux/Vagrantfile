@@ -1,9 +1,12 @@
 Vagrant.configure("2") do |config|
 
-  config.vm.box = "ubuntu/bionic64"
+  config.vm.box = "generic/ubuntu1804"
   config.vm.box_check_update = false
-  config.vm.network "public_network"
-
+  #config.vm.network :public_network,
+  #  :dev => "virbr0",
+  #  :mode => "bridge",
+  #  :type => "bridge"
+  
   config.vm.provision "file", source: "../../ubuntu/kind/create-cluster.yaml", destination: "/home/vagrant/create-cluster.yaml"
   config.vm.provision "file", source: "../../ubuntu/haproxy/haproxy-ingress-values.yaml", destination: "/home/vagrant/haproxy-ingress-values.yaml"
   config.vm.provision "file", source: "../../ubuntu/metallb/lb-pool-cm.yaml", destination: "/home/vagrant/lb-pool-cm.yaml"
@@ -11,10 +14,9 @@ Vagrant.configure("2") do |config|
 
   config.vm.define "kindmaster" do |node|
 
-    node.vm.provider "virtualbox" do |vb|
-        vb.name = "kindmaster"
-        vb.memory = 2048
-        vb.cpus = 2
+    node.vm.provider :libvirt do |lv|
+      lv.memory = 2048
+      lv.cpus = 2
     end
 
     node.vm.hostname = "kindmaster"
@@ -27,7 +29,8 @@ Vagrant.configure("2") do |config|
     node.vm.provision "create-kind-cluster", type: "shell", :path => "../../ubuntu/kind/create-cluster.sh"
     node.vm.provision "setup-metallb", type: "shell", :path => "../../ubuntu/metallb/install-metallb.sh"
     node.vm.provision "setup-haproxy", type: "shell", :path => "../../ubuntu/haproxy/install-haproxy.sh"
-    node.vm.provision "setup-iptables", type: "shell", :path => "../../ubuntu/ingress/iptables_vbox.sh"
+    node.vm.provision "setup-iptables", type: "shell", :path => "../../ubuntu/ingress/iptables_libvirt.sh"
+
   end
 
-end
+end  
