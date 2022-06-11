@@ -4,13 +4,13 @@ kind: Ingress
 metadata:
   name: nginx-ing
   annotations:
-    kubernetes.io/ingress.class: haproxy
-    ingress.kubernetes.io/rewrite-target: /
+    #kubernetes.io/ingress.class: haproxy
+    #ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
   - http:
       paths:
-      - path: /nginx
+      - path: /
         pathType: Prefix
         backend:
           service:

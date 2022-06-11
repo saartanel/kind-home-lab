@@ -10,7 +10,7 @@ Vagrant.configure("2") do |config|
   config.vm.provision "file", source: "../../ubuntu/kind/create-cluster.yaml", destination: "/home/vagrant/create-cluster.yaml"
   config.vm.provision "file", source: "../../ubuntu/haproxy/haproxy-ingress-values.yaml", destination: "/home/vagrant/haproxy-ingress-values.yaml"
   config.vm.provision "file", source: "../../ubuntu/metallb/lb-pool-cm.yaml", destination: "/home/vagrant/lb-pool-cm.yaml"
-  config.vm.provision "file", source: "../../ubuntu/applications/nginx", destination: "/home/vagrant/applications/nginx"
+  config.vm.provision "file", source: "../../k8s/applications/nginx", destination: "/home/vagrant/applications/nginx"
 
   config.vm.define "kindmaster" do |node|
 

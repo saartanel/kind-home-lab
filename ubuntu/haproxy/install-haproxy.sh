@@ -9,4 +9,4 @@ helm repo add haproxy-ingress https://haproxy-ingress.github.io/charts
 helm install haproxy-ingress haproxy-ingress/haproxy-ingress --create-namespace --namespace ingress-controller --version 0.13.7 -f /home/vagrant/haproxy-ingress-values.yaml
 
 # Sleep for abit to wait for pod creation
-sleep 15
+sleep 20

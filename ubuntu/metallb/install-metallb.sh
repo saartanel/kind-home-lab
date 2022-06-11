@@ -12,4 +12,4 @@ kubectl apply -f /home/vagrant/lb-pool-cm.yaml
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.12.1/manifests/metallb.yaml
 
 # Sleep for abit to wait for pod creation
-sleep 15
+sleep 20
