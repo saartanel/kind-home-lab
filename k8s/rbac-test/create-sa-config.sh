@@ -27,7 +27,7 @@ EOF
 
 kubectl -n "${NAMESPACE}" get secret "${TOKEN_NAME}" -o json | jq -r '.data["ca.crt"]' | base64 -d > "${CONFIG_PATH}/ca.crt"
 
-USER_TOKEN=$(kubectl get secret "${TOKEN_NAME}" -o json | jq -r '.data["token"]' | base64 -d)
+USER_TOKEN=$(kubectl -n "${NAMESPACE}" get secret "${TOKEN_NAME}" -o json | jq -r '.data["token"]' | base64 -d)
 
 context=$(kubectl config current-context)
 
