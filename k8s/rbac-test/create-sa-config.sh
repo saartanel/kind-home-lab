@@ -12,6 +12,8 @@ kubectl create sa "${SERVICE_ACCOUNT_NAME}" --namespace "${NAMESPACE}"
 
 CONFIG_PATH="/tmp/kube"
 
+mkdir -p "${CONFIG_PATH}"
+
 KUBECONFIG_FILE_NAME="${SERVICE_ACCOUNT_NAME}-${NAMESPACE}-conf"
 
 kubectl apply -f - <<EOF

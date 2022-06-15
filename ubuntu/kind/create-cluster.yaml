@@ -8,9 +8,9 @@ networking:
   ipFamily: ipv4
 nodes:
 - role: control-plane
-  #extraPortMappings:
-  #- containerPort: 6443
-  #  hostPort: 36443
+  extraPortMappings:
+  - containerPort: 6443
+    hostPort: 36443
 - role: worker
   kubeadmConfigPatches:
   - |

@@ -1,0 +1,42 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: http-https-redirect
+  namespace: web
+spec:
+  redirectScheme:
+    scheme: https
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: nginx-ir
+  namespace: web
+spec:
+  entryPoints:
+    - web
+  routes:
+  - match: Host(`varvas.net`)
+    middlewares:
+      - name: http-https-redirect
+    kind: Rule
+    services:
+    - name: nginx
+      port: 80
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: nginx-ir-tls
+  namespace: web
+spec:
+  entryPoints:
+    - web-secure
+  routes:
+    - match: Host(`varvas.net`)
+      kind: Rule
+      services:
+        - name: nginx
+          port: 80
+  tls:
+    secretName: k3s-varvas-net-tls
